@@ -8,16 +8,16 @@ def getSig(node, block):
     return req['signature'], req['height']
 
 def findFork(first, last):
-    print "..searching fork (%d) " % last
+    print("..searching fork (%d) " % last)
     mySig0 = getSig(MY_NODE, "at/%d" % (last - 1))
     refSig0 = getSig(REF_NODE, "at/%d" % (last - 1))
     mySig1 = getSig(MY_NODE, "at/%d" % last)
     refSig1 = getSig(REF_NODE, "at/%d" % last)
-    if mySig0==refSig0 and mySig1<>refSig1:
+    if mySig0==refSig0 and mySig1!=refSig1:
         return last
     if mySig0==refSig0 and mySig1==refSig1:
         return findFork(last, last + round(abs(last -first) / 2))
-    if mySig0<>refSig0 and mySig1<>refSig1:
+    if mySig0!=refSig0 and mySig1!=refSig1:
         return findFork(last, last - round(abs(last -first) / 2))
 
 mySig, myHeight = getSig(MY_NODE, "last")
