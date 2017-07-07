@@ -4,12 +4,12 @@ import pandas as pd
 import argparse
 import threading
 
-node = '127.0.0.1'
+node = '178.238.236.94'
 nthreads = 10
 
 def blocks_reader(seq_from, seq_to, index):
     thread_blocks[index] = requests.get('http://%s:6869/blocks/seq/%d/%d' % (node, seq_from, seq_to)).json()
-    
+
 parser = argparse.ArgumentParser(description='Statistics for Waves address')
 parser.add_argument('address', type=str, help='waves address')
 parser.add_argument('-b', '--blocks', action='store_true', help='show the list of blocks mined by the address')
@@ -25,9 +25,9 @@ if valid == False:
 total_balance = 0
 total_fees = 0
 mined_blocks = 0
-txfields = { 
-			'type' 				: '', 
-			'id' 				: '', 
+txfields = {
+			'type' 				: '',
+			'id' 				: '',
 			'sender'			: '',
 			'senderPublicKey'	: '',
 			'recipient'			: '',
@@ -113,5 +113,4 @@ if args.blocks:
                 print("%8d " % mined_blocks[n]),
         print
     print
-print("-" * 90) 
-     
+print("-" * 90)
