@@ -61,7 +61,9 @@ try:
                         raise
                     ndays +=1
                 prevdate = date
+
                 if tx['type']==3:
+                    print (tx)
                     if count == max_assets:
                         raise
                     issue_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(tx['timestamp']/1000.))
